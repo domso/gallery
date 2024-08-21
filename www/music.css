@@ -1,0 +1,20 @@
+#trackbox {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+#audioPlayer {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+}
+.audioIcon {height:auto;width:30%;max-width:150px;vertical-align:middle}
+.audioInfo {display:inline-block;vertical-align:middle;width:70%}
+.entry_inactive {background-color: rgb(17, 19, 20);color:white;border-style:solid;border-color:rgb(13,15,16)}
+.entry_active {border-style: outset;background-color: rgb(13, 36, 61);color:white}
+.info_title{font-family:xirod;font-size:Larger}
+.info_album{font-family:xirod;font-style:italic}
+.info_artist{font-family:xirod;font-size:smaller}
+.info_year{font-family:xirod;font-size:small}
+.info_duration{font-family:xirod;font-size:small}
+.hide {display:none}
