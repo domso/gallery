@@ -21,7 +21,6 @@ function init_audio() {
     function add_track_stat(track, parent_div, stat, css) {
         if (track.hasOwnProperty(stat)) {
             let container = document.createElement("a");
-            console.log(track);
             container.innerHTML = track[stat];
             container.classList.add(css);
             parent_div.append(container);
@@ -101,7 +100,6 @@ function init_audio() {
     audio_player.onended = function() {
         let div = document.getElementById("track_" + (current_active_track + 1));
         if (div !== null) {
-            scroll_to_view(current_active_track + 1);
             div.onclick()
         } else {
             audio_complete();
@@ -110,12 +108,15 @@ function init_audio() {
 
     return {
         "play" : (tracks) => {
+            current_active_track = -1;
+            trackbox.innerHTML = "";
             let id = 0;
             tracks.forEach((track) => {
                 add_track_to_trackbox(id, track);
                 id++;
             });
             activate_track(0, tracks[0].src)
+            scroll_to_view(0);
         }
     }
 }

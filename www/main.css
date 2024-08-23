@@ -1,3 +1,8 @@
+@font-face {
+   font-family: 'xirod' ;
+   src: url('/fonts/xirod.ttf') format('truetype');
+}
+
 body {
     margin: 0px;
 }
@@ -35,7 +40,7 @@ body {
     vertical-align: middle;
     color: white;
     padding-left: 12.5px;
-    font-size: 
+    font-family:xirod;
 }
 
 #sidebar {
