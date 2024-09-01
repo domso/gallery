@@ -7,7 +7,7 @@ async function get_from_url(url) {
 }
 
 function command_to_url(base, type, command) {
-    let url = base + "?" + type + "=";
+    let url = base + type + "/?query" + "=";
     command.split(" ").forEach((s, i) => {
         if (i > 0) {
             url += ",";
@@ -19,7 +19,7 @@ function command_to_url(base, type, command) {
 }
 
 async function remote_search(type, command) {
-    const url = command_to_url("/test/", type, command);
+    const url = command_to_url("/", type, command);
     return get_from_url(url).then((y) => {
         return JSON.parse(y);
     }).catch(() => {
@@ -50,17 +50,13 @@ init_page({
         "icon": "🎶",
         "box_id": "audio",
         "command" : async (cmd) => {
-            let h = await remote_search("music", cmd);
+            let h = await remote_search("audio", cmd);
             audio.play(
                 h.result.map((track) => {
                     let result = track;
                     
                     result.icon = result.cover;
-                    result.src = "https://d38nvwmjovqyq6.cloudfront.net/va90web25003/companions/Foundations%20of%20Rock/13.02.mp3"
-
-                    if (result.icon == "") {
-                        result.icon = "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU";
-                    }
+                    result.src = result.path;
 
                     if (result.title == "") {
                         result.title = result.path;
@@ -117,31 +113,13 @@ init_page({
     "d": {
         "icon": "📷",
         "box_id": "gallery",
-        "command" : (cmd) => {
-            gallery.add_images_to_gallery([
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx", "thumbnail" : "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx", "thumbnail" : "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx", "thumbnail" : "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx"},
-                {"image": "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx", "thumbnail" : "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx"},
-                {"image": "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx", "thumbnail" : "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx"},
-                {"image": "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx", "thumbnail" : "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx"},
-                {"image": "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx", "thumbnail" : "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx"},
-                {"image": "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx", "thumbnail" : "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx"},
-                {"image": "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx", "thumbnail" : "https://images.unsplash.com/photo-1722264985082-dc64fa39c927?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-                {"image": "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU", "thumbnail" : "https://fastly.picsum.photos/id/319/536/354.jpg?hmac=ZzEILWavlsP9MWDCsCqQp3fxsbmTD48rzZWY5c57IPU"},
-            ]);
-            return new Promise(resolve => setTimeout(resolve, 5000));
+        "command" : async (cmd) => {
+            let h = await remote_search("image", cmd);
+            gallery.add_images_to_gallery(
+                h.result.map((image) => {
+                    return image;
+                })
+            );
         }
     },
 });

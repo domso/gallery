@@ -1,0 +1,6 @@
+[submodule "external/simple_web_server"]
+	path = external/simple_web_server
+	url = https://github.com/domso/simple_web_server
+[submodule "external/parsery"]
+	path = external/parsery
+	url = https://github.com/domso/parsery

@@ -8,10 +8,40 @@
     position: absolute;
     bottom: 0px;
 }
-.audioIcon {height:auto;width:30%;max-width:150px;vertical-align:middle}
+.audioIcon {
+    height:auto;
+    width:30%;
+    max-width:150px;
+    vertical-align:middle;
+    font-size: 700%;
+}
 .audioInfo {display:inline-block;vertical-align:middle;width:70%}
-.entry_inactive {background-color: rgb(17, 19, 20);color:white;border-style:solid;border-color:rgb(13,15,16)}
-.entry_active {border-style: outset;background-color: rgb(13, 36, 61);color:white}
+.entry_inactive {
+    background-color: rgba(17, 19, 20, 0.00);
+    color:white;
+    border-style:solid;
+    border-color:rgba(13,15,16, 0);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    cursor: pointer;
+}
+.entry_inactive:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.75);
+  background-color: rgba(0, 255, 255, 0.25);
+  border-color: rgba(0, 255, 255, 0.75);
+}
+.entry_active {
+    border-style: outset;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.75);
+    border-color: rgba(0, 255, 255, 0.75);
+    background-color: rgba(13, 36, 61, 0.75);
+    color:white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
 .info_title{font-family:xirod;font-size:Larger}
 .info_album{font-family:xirod;font-style:italic}
 .info_artist{font-family:xirod;font-size:smaller}

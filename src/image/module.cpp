@@ -1,6 +1,6 @@
 #include "module.h"
 
-namespace audio {
+namespace image {
 
 web_server::http::response module::get_callback(const web_server::http::request& request, userdata& local) {
     web_server::http::response result;

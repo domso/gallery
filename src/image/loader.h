@@ -7,7 +7,7 @@
 #include "file_info.h"
 #include "parser.h"
 
-namespace audio {
+namespace image {
 
 class loader {
 public:

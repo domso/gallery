@@ -41,6 +41,7 @@ function init_audio() {
         icon.classList.add("audioIcon");
         icon.src = track.icon;
         entry.append(icon);
+        icon.alt = "💿";
 
         let stats = document.createElement("span");
         stats.classList.add("audioInfo");
@@ -108,6 +109,7 @@ function init_audio() {
 
     return {
         "play" : (tracks) => {
+            audio_complete();
             current_active_track = -1;
             trackbox.innerHTML = "";
             let id = 0;
@@ -115,8 +117,10 @@ function init_audio() {
                 add_track_to_trackbox(id, track);
                 id++;
             });
-            activate_track(0, tracks[0].src)
-            scroll_to_view(0);
+            if (tracks.length > 0) {
+                activate_track(0, tracks[0].src)
+                scroll_to_view(0);
+            }
         }
     }
 }

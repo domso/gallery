@@ -10,9 +10,11 @@ body {
 #background_wrapper {
     margin: 0px;
     overflow: hidden;
-    background: url("https://img.freepik.com/free-photo/galactic-night-sky-astronomy-science-combined-generative-ai_188544-9656.jpg?t=st=1724173748~exp=1724177348~hmac=716de4262217d9c86fe609cb42dca244112bfd3442440f992172a8b3138820ac&w=1380");
+    background: url("/background.jpg");
+
     background-repeat:no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
     position: relative;
     top: 0px;
     left: 0px;
@@ -59,10 +61,16 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    border-style:solid;
+    border-color: rgba(0, 255, 255, 0.0);
 }
 
 .sidebar_item:hover{
-  background: rgba(0, 255, 255, 0.75);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.75);
+  background-color: rgba(0, 255, 255, 0.25);
+  border-color: rgba(0, 255, 255, 0.75);
+  border-style:solid;
 }
 
 .sidebar_item_icon {
